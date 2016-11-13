@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+		<link href="design.css" type="text/css" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script type="text/javascript">
+        function callService() {
+            $.ajax({
+                url:'/DQonHANA/myapp.xsjs',
+                data: {
+                	"SearchField":  $("#SearchField").val()
+                },
+                success: function (response) {
+                	$('#output').append('<li>' + response + '</li>');
+                },
+                error: function () {
+                    $('#output').html('Bummer: there was an error!');
+                },
+            });
+            return false;
+        }
+    </script> 
+    </head>
+    <body>
+    <h2>Please enter a search string</h2>
+    <br>
+   <input type="search" class="search_bar" id="SearchField" />
+   <script type="text/javascript">
+$('#SearchField').keyup(function(e) {
+   if(e.keyCode == 13){
+     callService();
+   }
+ });
+ </script> 
+   <ul id="output">
+   </ul>  
+</body>
+</html>
